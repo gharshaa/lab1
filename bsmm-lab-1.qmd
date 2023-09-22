@@ -104,16 +104,38 @@ mets_ben |>
 
 In these nine years, the Mets had a combined record of 728 wins and 730 losses, for an overall winning percentage of 0.499.
 
-### Exercise 9
-
-...
-```{r}
-dplyr::arrange(mets_ben, desc(WPct))
-...
+### Exercise 9 \_ Data not Available
 
 ### Exercise 10
 
-...
 ```{r}
-dplyr::arrange(mets_ben, desc(WPct))
-...
+library(dplyr)
+mets_ben <- mets_ben %>%
+  dplyr::mutate(
+    gm = case_when(
+      yearID == 2004 ~ "Jim Duquette",
+      yearID >= 2005 & yearID <= 2010 ~ "Omar Minaya",
+      yearID >= 2011 ~ "Sandy Alderson"
+    )
+  )
+mets_ben
+```
+
+##Exercise 11
+
+```{r Group by the manager (gm) variable and summarize the data}
+ 
+manager_summary <- mets_ben %>%
+  group_by(gm) %>%
+  summarize(
+    num_years = n(),
+    total_W = sum(W),
+    total_L = sum(L),
+    total_WPct = mean(WPct),
+    sum_resid = sum(Diff)
+  )
+```
+
+```{r}
+manager_summary
+```
