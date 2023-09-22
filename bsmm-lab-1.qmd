@@ -50,28 +50,70 @@ mets_ben
 
 ### Exercise 4
 
+```{r}
+mets_ben <- mets_ben |>
+   dplyr::mutate(WPct = W / (W + L))
+mets_ben
+```
+
+```{r}
+mets_ben <- mets_ben |>
+   dplyr::mutate(W_hat = WPct_hat * (W + L))
+mets_ben
 ...
 
 ### Exercise 5
 
+```{r}
+filter(mets_ben, W >= W_hat)
+...
+
+```{r}
+filter(mets_ben, W < W_hat)
 ...
 
 ### Exercise 6
 
 ...
+```{r}
+dplyr::arrange(mets_ben, desc(WPct))
+...
 
 ### Exercise 7
 
+...
+```{r}
+mets_ben %>% 
+  dplyr::mutate(Diff = W - W_hat) |>
+  dplyr::arrange(desc(Diff))
 ...
 
 ### Exercise 8
 
 ...
+```{r}
+mets_ben |>
+  dplyr::summarize(
+    num_years = n(), 
+    total_W = sum(W), 
+    total_L = sum(L), 
+    total_WPct = sum(W) / sum(W + L), 
+    sum_resid = sum(W - W_hat)
+  )
+...
+
+In these nine years, the Mets had a combined record of 728 wins and 730 losses, for an overall winning percentage of 0.499.
 
 ### Exercise 9
 
 ...
+```{r}
+dplyr::arrange(mets_ben, desc(WPct))
+...
 
 ### Exercise 10
 
+...
+```{r}
+dplyr::arrange(mets_ben, desc(WPct))
 ...
