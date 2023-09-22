@@ -2,7 +2,7 @@
 title: "BSMM-lab-1"
 subtitle: "BSMM 8740 Fall 2023"
 author: "Harsha"
-date: "Add the date here"
+date: "22-09-2023"
 format: html
 editor: visual
 self-contained: true
